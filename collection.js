@@ -1,14 +1,13 @@
 /**
  * JavaScript implementation of Laravel's Collection class
  *
- * Uses constructor function to create new object and attaches methods via the prototype chain.
- * 
  * @author Kasey Cowley
+ * @author Erik Aybar
  */
 
 /**
  * Constructor function
- * 
+ *
  * @param {Array} items - The items to be added to the collection
  * @throws TypeError
  */
@@ -23,18 +22,28 @@ function Collection(items) {
     this._items = items;
 }
 
+
 /**
  * Get all items in the collection
- * 
+ *
  * @returns {Array}
  */
-Collection.prototype.all = function () {
+Collection.prototype.items = function () {
     return this._items;
 };
 
 /**
+ * Get all items in the collection
+ *
+ * @returns {Array}
+ */
+Collection.prototype.all = function () {
+  return this.items();
+};
+
+/**
  * Collapse the collection items into a single array
- * 
+ *
  * @returns {Array}
  */
 Collection.prototype.collapse = function () {
@@ -53,7 +62,7 @@ Collection.prototype.collapse = function () {
 
 /**
  * Returns whether a value exists in the collection
- * 
+ *
  * @param value
  * @returns {boolean}
  */
@@ -63,7 +72,7 @@ Collection.prototype.contains = function (value) {
 
 /**
  * Returns the first item in the collection
- * 
+ *
  * @returns {*}
  */
 Collection.prototype.first = function () {
@@ -72,7 +81,7 @@ Collection.prototype.first = function () {
 
 /**
  * Returns the difference of the collection and given items
- * 
+ *
  * @param items
  * @returns {Array.<T>|*}
  */
@@ -96,12 +105,14 @@ Collection.prototype.each = function(callback) {
     return this;
 };
 
-/** Begin Tests */
-var items = [1,2,3,4,5,6,7,8,9,10,[11,12]];
-var collection = new Collection(items);
 
-console.log(collection.all());
-console.log(collection.collapse());
-console.log(collection.contains(1));
-console.log(collection.contains(20));
-console.log(collection.each(Math.pow));
+/**
+ * Get the current number of items in the collection
+ * @returns {Number}
+ */
+Collection.prototype.count = function() {
+    return this._items.length;
+};
+
+
+module.exports = Collection;
