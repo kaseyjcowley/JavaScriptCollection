@@ -1,0 +1,9 @@
+{
+  "name": "LaravelCollection.js",
+  "scripts": {
+    "test": "jest"
+  },
+  "devDependencies": {
+    "jest-cli": "^0.2.2"
+  }
+}
